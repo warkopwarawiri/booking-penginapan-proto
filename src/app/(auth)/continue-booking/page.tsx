@@ -19,6 +19,10 @@ export default function ContinueBookingPage() {
           <ShieldCheck size={16} className="mt-0.5 shrink-0 text-[var(--color-success)]" />
           Data booking pilihanmu akan tetap aman setelah login atau registrasi.
         </p>
+        <div className="mt-3 grid grid-cols-2 gap-2 text-[11px] font-semibold">
+          <div className="rounded-[16px] bg-[var(--color-surface-muted)] px-3 py-2.5 text-[var(--color-text)]">Pilihan stay tetap tersimpan</div>
+          <div className="rounded-[16px] bg-[var(--color-surface-muted)] px-3 py-2.5 text-[var(--color-text)]">Lanjut ke checkout lebih cepat</div>
+        </div>
       </section>
 
       <div className="space-y-2">

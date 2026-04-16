@@ -28,7 +28,7 @@ export default function LoginPage() {
         <div className="space-y-2">
           <p className="text-sm font-semibold text-[var(--color-primary-dark)]">Selamat datang kembali</p>
           <h1 className="text-[1.9rem] font-bold leading-[1.12] tracking-tight text-[var(--color-text)]">
-            Masuk dan lanjutkan booking tanpa mengulang dari awal.
+            Masuk dan lanjutkan perjalananmu tanpa kehilangan progress.
           </h1>
           <p className="text-sm leading-6 text-[var(--color-text-muted)]">
             Voucher, pilihan terakhir, dan status pesananmu tetap tersimpan rapi di satu akun.

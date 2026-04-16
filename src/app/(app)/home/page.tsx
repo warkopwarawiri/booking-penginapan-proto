@@ -36,6 +36,12 @@ const trustHighlights = [
   },
 ];
 
+const quickDecisionSteps = [
+  { label: "Kurasi", value: "Alasan stay jelas" },
+  { label: "Ibadah", value: "Info nearby siap" },
+  { label: "Checkout", value: "Voucher instan" },
+];
+
 function SectionShell({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <section
@@ -63,10 +69,10 @@ export default function HomePage() {
             </p>
             <p className="mt-1 text-sm font-semibold text-[var(--color-text)]">{currentUser.name}</p>
             <h1 className="mt-2 text-[1.5rem] font-bold leading-[1.2] text-[var(--color-text)]">
-              Penginapan terkurasi, nyaman, dan lebih mudah dipercaya.
+              Temukan stay yang terasa spesial, jelas alasannya, dan cepat dibooking.
             </h1>
             <p className="mt-1.5 text-xs leading-5 text-[var(--color-text-muted)]">
-              Temukan Hidden Gem dan info ramah Muslim yang langsung membantu kamu memilih dengan lebih yakin.
+              Hidden Gem, info ramah Muslim, dan booking yang ringan dibuat untuk membantu kamu cepat yakin.
             </p>
           </div>
         </div>
@@ -92,21 +98,29 @@ export default function HomePage() {
           ) : null}
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,111,174,0.92)_0%,rgba(74,171,240,0.84)_58%,rgba(221,244,255,0.55)_100%)]" />
           <div className="absolute -right-8 -top-10 h-28 w-28 rounded-full bg-white/10 blur-2xl" />
-          <Badge tone="gold">Kurasi dengan bukti</Badge>
-          <h2 className="mt-3 text-[1.35rem] font-bold leading-8">
-            Hidden Gem terkurasi dengan info ramah Muslim yang siap dipakai.
+          <Badge tone="gold">Kurasi yang terasa nyata</Badge>
+          <h2 className="mt-3 text-[1.45rem] font-bold leading-8">
+            Temukan stay yang cantik, jelas alasannya, dan langsung terasa aman untuk dipilih.
           </h2>
-          <p className="mt-2 max-w-[290px] text-sm leading-6 text-white/85">
-            Bukan hanya listing cantik — setiap stay pilihan hadir dengan alasan kurasi, insight sekitar, dan booking flow yang terasa ringan.
+          <p className="mt-2 max-w-[290px] text-sm leading-6 text-white/88">
+            Hidden Gem, info ramah Muslim, dan alur booking ringan digabung dalam satu pengalaman yang tidak bikin ragu.
           </p>
           {heroGem?.muslimInfo ? (
             <div className="mt-3 rounded-[18px] border border-white/20 bg-black/15 px-3 py-2.5 text-[11px] font-medium text-white/92 backdrop-blur-sm">
-              <p className="text-white/70">Kenapa ini terasa beda</p>
+              <p className="text-white/70">Kenapa traveler cepat yakin</p>
               <p className="mt-1 leading-5">
-                {heroGem.hiddenGemReasons?.[0] ?? "Dipilih manual oleh tim kurasi"} • {heroGem.muslimInfo.prayerPlace} • {heroGem.muslimInfo.halalFood}
+                {heroGem.hiddenGemReasons?.[0] ?? "Dipilih manual oleh tim kurasi"} • {heroGem.muslimInfo.prayerPlace} • Voucher langsung aktif
               </p>
             </div>
           ) : null}
+          <div className="mt-4 grid grid-cols-3 gap-2 text-[11px]">
+            {quickDecisionSteps.map((item) => (
+              <div key={item.label} className="rounded-[16px] bg-white/12 px-2.5 py-2 text-center backdrop-blur-sm">
+                <p className="text-white/70">{item.label}</p>
+                <p className="mt-1 font-semibold text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link href="/search/results" className={buttonVariants("secondary")}>
               Lihat Hidden Gem
@@ -115,7 +129,7 @@ export default function HomePage() {
               href="/search"
               className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 px-4 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
             >
-              Mulai mencari
+              Coba pencarian cepat
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -125,8 +139,8 @@ export default function HomePage() {
               <p className="mt-1 text-sm font-semibold">{formatCurrency(480000)}</p>
             </div>
             <div className="rounded-2xl bg-white/12 px-3 py-2 backdrop-blur-sm">
-              <p className="text-white/70">Paling sering dibuka</p>
-              <p className="mt-1 text-sm font-semibold">Bali & Lombok</p>
+              <p className="text-white/70">Booking flow</p>
+              <p className="mt-1 text-sm font-semibold">4 langkah ringan</p>
             </div>
           </div>
         </div>
@@ -138,8 +152,8 @@ export default function HomePage() {
           className="flex items-center justify-between rounded-[20px] border border-white/80 bg-white/90 px-4 py-3 text-sm shadow-[0_18px_40px_-34px_rgba(31,41,55,0.45)] backdrop-blur"
         >
           <div>
-            <p className="font-semibold text-[var(--color-text)]">Mau menginap di mana?</p>
-            <p className="text-xs text-[var(--color-text-muted)]">Lokasi, tanggal, dan jumlah tamu</p>
+            <p className="font-semibold text-[var(--color-text)]">Cari stay yang paling pas</p>
+            <p className="text-xs text-[var(--color-text-muted)]">Lokasi, tanggal, tamu, lalu lihat pilihan terbaik</p>
           </div>
           <div className="flex items-center gap-2 rounded-full bg-[var(--color-primary-soft)] px-3 py-2 text-[var(--color-primary-dark)]">
             <MapPin size={16} />

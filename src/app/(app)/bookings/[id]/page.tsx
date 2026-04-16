@@ -79,6 +79,11 @@ export default async function BookingDetailPage({
       value: property.isMuslimFriendly ? "Sudah dicatat" : "Jelas & fleksibel",
     },
   ];
+  const arrivalChecklist = [
+    "Simpan e-voucher atau screenshot sebelum berangkat.",
+    "Datang sesuai jam check-in dan tunjukkan kode booking ke staff.",
+    "Jika perlu bantuan, buka detail ini untuk kontak host dan update status terbaru.",
+  ];
 
   return (
     <main className="space-y-4 pb-2">
@@ -298,6 +303,27 @@ export default async function BookingDetailPage({
               </div>
             </div>
           ) : null}
+        </div>
+      </section>
+
+      <section className="rounded-[24px] border border-[var(--color-border)] bg-white p-4 shadow-[0_18px_40px_-34px_rgba(31,41,55,0.32)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold text-[var(--color-text)]">Checklist sebelum berangkat</h2>
+            <p className="mt-1 text-xs text-[var(--color-text-muted)]">Supaya check-in terasa lebih tenang dan tidak ada langkah yang terlewat.</p>
+          </div>
+          <Badge tone="info">Ready</Badge>
+        </div>
+
+        <div className="mt-3 space-y-2">
+          {arrivalChecklist.map((item, index) => (
+            <div key={item} className="flex items-start gap-3 rounded-[18px] bg-[var(--color-surface-muted)] px-3 py-3">
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[11px] font-bold text-[var(--color-primary-dark)]">
+                {index + 1}
+              </span>
+              <p className="text-sm text-[var(--color-text-muted)]">{item}</p>
+            </div>
+          ))}
         </div>
       </section>
 

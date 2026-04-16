@@ -20,7 +20,7 @@ const slides = [
     id: "01",
     eyebrow: "Mulai lebih mudah",
     title: "Hidden Gem terkurasi dan stay nyaman kini lebih mudah ditemukan",
-    body: "Buka rekomendasi yang terasa personal, dengan info penting yang langsung membantu kamu memilih lebih yakin.",
+    body: "Buka rekomendasi yang terasa personal, dengan proof singkat yang membantu kamu cepat yakin tanpa perlu scroll terlalu jauh.",
     points: ["9 Hidden Gem pilihan", "18 stay ramah Muslim", "Booking 4 langkah"],
     previewTitle: "Yang langsung terasa",
     previewMeta: "Kurasi tim • Info sekitar • Voucher instan",
@@ -31,7 +31,7 @@ const slides = [
     id: "02",
     eyebrow: "Hidden Gem pilihan",
     title: "Jelajahi tempat unik dengan alasan kurasi yang benar-benar jelas",
-    body: "Setiap Hidden Gem hadir dengan cerita singkat, suasana tempat, dan detail yang membuat pilihan terasa lebih meyakinkan.",
+    body: "Setiap Hidden Gem hadir dengan alasan kurasi, suasana tempat, dan detail yang membuat keputusan terasa lebih mantap.",
     points: ["Dipilih tim internal", "Alasan stay ditampilkan", "Visual terasa premium"],
     previewTitle: "Unggulan minggu ini",
     previewMeta: "View sawah • Masjid 350m • Rating 4.9",
@@ -42,7 +42,7 @@ const slides = [
     id: "03",
     eyebrow: "Perjalanan lebih nyaman",
     title: "Info ramah Muslim bukan tempelan, tapi benar-benar membantu",
-    body: "Arah kiblat, kuliner halal, dan tempat ibadah terdekat ditampilkan natural tanpa membuat pengalaman terasa rumit.",
+    body: "Arah kiblat, kuliner halal, dan tempat ibadah terdekat ditampilkan natural tanpa membuat pengalaman terasa berat atau terlalu niche.",
     points: ["Masjid & halal nearby", "Arah kiblat tersedia", "Lebih tenang saat check-in"],
     previewTitle: "Proof di tiap listing",
     previewMeta: "Masjid 350m • Halal food 200m • Wudhu tersedia",
@@ -172,7 +172,7 @@ export default function OnboardingPage() {
 
       <section className="space-y-3">
         <p className="text-center text-[11px] text-[var(--color-text-muted)]">
-          {isLastSlide ? "Akun siap dibuat dan pilihan penginapan tetap tersimpan." : "Geser kartu atau tap tombol untuk lanjut."}
+          {isLastSlide ? "Akun siap dibuat, dan flow booking tetap bisa dilanjutkan tanpa mulai ulang." : "Geser kartu atau tap tombol untuk lanjut."}
         </p>
 
         {isLastSlide ? (

@@ -35,13 +35,18 @@ export default async function BookingReviewPage({
   const taxes = Math.round(subtotal * 0.1);
   const serviceFee = 50000;
   const total = subtotal + taxes + serviceFee;
+  const afterPaymentSteps = [
+    "Pembayaran diverifikasi otomatis oleh sistem.",
+    "E-voucher langsung aktif dan masuk ke aplikasi.",
+    "Detail check-in dan kontak host siap dibuka kapan saja.",
+  ];
 
   return (
     <main className="space-y-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       <PageHeader
         eyebrow="Ringkasan Pesanan"
-        title="Review terakhir sebelum pembayaran"
-        description="Pastikan detail stay, data pemesan, dan total biaya sudah pas sebelum lanjut ke pembayaran."
+        title="Semua detail sudah siap untuk dibayar"
+        description="Cek sekali lagi dengan tenang. Setelah ini kamu tinggal pilih metode pembayaran yang paling nyaman."
         backHref={`/booking/form?property=${property.slug}`}
         action={
           <span className="rounded-full bg-[var(--color-primary-soft)] px-3 py-1 text-[11px] font-semibold text-[var(--color-primary-dark)]">
@@ -232,6 +237,27 @@ export default async function BookingReviewPage({
             <MessageCircleMore size={16} className="mt-0.5 shrink-0 text-[var(--color-primary-dark)]" />
             Butuh bantuan? Tim support siap membantu sebelum kamu menyelesaikan pembayaran.
           </p>
+        </div>
+      </section>
+
+      <section className="rounded-[24px] border border-[var(--color-border)] bg-white p-4 shadow-[0_18px_40px_-34px_rgba(31,41,55,0.3)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold text-[var(--color-text)]">Setelah kamu bayar</h2>
+            <p className="mt-1 text-xs text-[var(--color-text-muted)]">Semua langkah setelah transaksi dibuat sesingkat mungkin.</p>
+          </div>
+          <Badge tone="info">Auto-update</Badge>
+        </div>
+
+        <div className="mt-3 space-y-2">
+          {afterPaymentSteps.map((step, index) => (
+            <div key={step} className="flex items-start gap-3 rounded-[18px] bg-[var(--color-surface-muted)] px-3 py-3">
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[11px] font-bold text-[var(--color-primary-dark)]">
+                {index + 1}
+              </span>
+              <p className="text-sm text-[var(--color-text-muted)]">{step}</p>
+            </div>
+          ))}
         </div>
       </section>
 

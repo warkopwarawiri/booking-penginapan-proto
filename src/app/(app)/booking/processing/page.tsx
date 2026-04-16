@@ -24,8 +24,8 @@ export default async function ProcessingPage({
     <main className="space-y-4 pb-2">
       <PageHeader
         eyebrow="Menunggu Konfirmasi"
-        title="Pembayaran sedang diproses"
-        description={`Sistem sedang menyiapkan konfirmasi untuk ${property.name} dan akan menerbitkan e-voucher setelah valid.`}
+        title="Pembayaran sedang diverifikasi"
+        description={`Sistem sedang mengecek transaksi untuk ${property.name}. Begitu valid, e-voucher akan langsung diterbitkan otomatis.`}
         backHref={`/booking/payment?property=${property.slug}`}
       />
 
@@ -66,8 +66,12 @@ export default async function ProcessingPage({
             <Copy size={12} /> Copy
           </span>
         </div>
+        <div className="mt-3 flex flex-wrap gap-2 text-[11px] font-semibold">
+          <span className="rounded-full bg-white px-3 py-1.5 text-[var(--color-primary-dark)]">Nominal tetap</span>
+          <span className="rounded-full bg-white px-3 py-1.5 text-[var(--color-text-muted)]">Status auto-update</span>
+        </div>
         <p className="mt-3 text-sm leading-6 text-[var(--color-text-muted)]">
-          Status akan diperbarui otomatis begitu pembayaran terverifikasi oleh bank.
+          Status akan diperbarui otomatis begitu pembayaran terverifikasi oleh bank. Kamu tidak perlu upload bukti manual untuk flow ini.
         </p>
       </section>
 

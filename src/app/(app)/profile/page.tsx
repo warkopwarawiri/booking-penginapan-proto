@@ -17,8 +17,8 @@ export default function ProfilePage() {
     <main className="space-y-4 pb-2">
       <PageHeader
         eyebrow="Profil"
-        title="Kelola akun dan preferensi perjalananmu"
-        description="Atur bahasa, keamanan, dan kebutuhan bantuan dalam satu tempat yang rapi."
+        title="Akun, preferensi, dan bantuan dalam satu tempat"
+        description="Atur bahasa, keamanan, dan kebutuhan bantuan tanpa membuat pengalaman terasa rumit."
       />
 
       <section className="rounded-[24px] bg-[linear-gradient(135deg,#4AABF0_0%,#2D8CC7_100%)] p-4 text-white shadow-[0_22px_50px_-30px_rgba(45,140,199,0.8)]">

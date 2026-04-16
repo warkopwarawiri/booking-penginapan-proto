@@ -30,7 +30,7 @@ export default function RegisterPage() {
         <div className="space-y-2">
           <p className="text-sm font-semibold text-[var(--color-primary-dark)]">Buat akun baru</p>
           <h1 className="text-[1.9rem] font-bold leading-[1.12] tracking-tight text-[var(--color-text)]">
-            Mulai perjalananmu dengan alur yang terasa ringan dan meyakinkan.
+            Buat akun cepat, lalu lanjutkan booking dengan rasa aman.
           </h1>
           <p className="text-sm leading-6 text-[var(--color-text-muted)]">
             Setelah daftar, user bisa menyimpan voucher, memantau status pesanan, dan langsung lanjut ke booking yang sempat tertunda.

@@ -207,6 +207,11 @@ export default async function PropertyDetailPage({
     property.isMuslimFriendly ? "info ibadah sudah siap" : "detail check-in jelas",
     property.originalPrice ? "harga terasa lebih aman" : "cocok untuk short escape",
   ];
+  const confidenceReasons = [
+    property.isHiddenGem ? "Alasan kurasi dijelaskan dengan ringkas" : "Detail stay mudah dipahami sejak awal",
+    property.isMuslimFriendly ? "Masjid & halal nearby sudah diverifikasi" : "Aturan check-in dan pembatalan jelas",
+    "Voucher digital langsung siap setelah pembayaran",
+  ];
 
   return (
     <main className="space-y-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
@@ -327,6 +332,26 @@ export default async function PropertyDetailPage({
           <StatCard icon={<Star size={15} />} label="Rating" value={`${property.rating}/5`} />
           <StatCard icon={<Users size={15} />} label="Kapasitas" value={`Hingga ${property.maxGuests} tamu`} />
           <StatCard icon={<Clock3 size={15} />} label="Check-in" value={experience.checkIn} />
+        </div>
+      </section>
+
+      <section className="rounded-[24px] border border-[rgba(74,171,240,0.18)] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] p-4 shadow-[0_18px_40px_-34px_rgba(31,41,55,0.3)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-primary-dark)]">Kenapa orang cepat yakin di sini</p>
+            <h2 className="mt-1 text-base font-semibold text-[var(--color-text)]">Proof penting sudah diringkas sebelum kamu booking.</h2>
+          </div>
+          <span className="rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-primary-dark)]">
+            Cepat dipahami
+          </span>
+        </div>
+
+        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+          {confidenceReasons.map((reason) => (
+            <div key={reason} className="rounded-[18px] border border-[var(--color-border)] bg-white px-3 py-3">
+              <p className="text-sm leading-6 text-[var(--color-text-muted)]">{reason}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -561,6 +586,14 @@ export default async function PropertyDetailPage({
             <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-gold-soft)] px-2.5 py-1 text-[10px] font-semibold text-[#8A5A04]">
               <Sparkles size={12} /> Kurasi Tim
             </span>
+          ) : null}
+        </div>
+
+        <div className="mb-3 flex flex-wrap gap-2 text-[10px] font-semibold">
+          <span className="rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[var(--color-primary-dark)]">Voucher instan</span>
+          <span className="rounded-full bg-[var(--color-surface-muted)] px-2.5 py-1 text-[var(--color-text-muted)]">Gratis batal H-1</span>
+          {property.isMuslimFriendly ? (
+            <span className="rounded-full bg-[var(--color-gold-soft)] px-2.5 py-1 text-[#8A5A04]">Info ibadah siap</span>
           ) : null}
         </div>
 

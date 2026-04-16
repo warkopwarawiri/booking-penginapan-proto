@@ -156,13 +156,18 @@ function PaymentPageContent() {
   const total = subtotal + taxes + serviceFee;
   const activeMethod = methodGroups.flatMap((group) => group.items).find((item) => item.id === selectedMethod) ?? methodGroups[0].items[0];
   const activeHint = methodHints[selectedMethod] ?? methodHints["bca-va"];
+  const afterConfirming = [
+    "Sistem langsung memeriksa pembayaran secara otomatis.",
+    "Status booking berubah real-time tanpa refresh manual.",
+    "E-voucher aktif dan siap dibuka setelah pembayaran berhasil.",
+  ];
 
   return (
     <main className="space-y-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       <PageHeader
         eyebrow="Pembayaran"
-        title="Pilih metode pembayaran"
-        description="Pastikan metode yang dipilih terasa paling nyaman sebelum e-voucher diterbitkan otomatis."
+        title="Pilih metode yang terasa paling aman"
+        description="Total tidak akan berubah di tahap ini. Setelah konfirmasi, voucher akan diterbitkan otomatis bila pembayaran berhasil."
         backHref={`/booking/review?property=${property.slug}`}
         action={
           <span className="rounded-full bg-[var(--color-primary-soft)] px-3 py-1 text-[11px] font-semibold text-[var(--color-primary-dark)]">
@@ -348,6 +353,29 @@ function PaymentPageContent() {
         </div>
       </section>
 
+      <section className="rounded-[24px] border border-[rgba(74,171,240,0.2)] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] p-4 shadow-[0_18px_40px_-34px_rgba(31,41,55,0.3)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-[var(--color-text)]">Apa yang terjadi setelah konfirmasi</p>
+            <p className="mt-1 text-xs text-[var(--color-text-muted)]">Transisi ke voucher dibuat cepat, aman, dan mudah dipahami.</p>
+          </div>
+          <span className="rounded-full bg-[var(--color-primary-soft)] px-3 py-1 text-[11px] font-semibold text-[var(--color-primary-dark)]">
+            Realtime
+          </span>
+        </div>
+
+        <div className="mt-3 space-y-2">
+          {afterConfirming.map((point, index) => (
+            <div key={point} className="flex items-start gap-3 rounded-[18px] bg-white px-3 py-3 shadow-[0_12px_28px_-30px_rgba(31,41,55,0.45)]">
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary-soft)] text-[11px] font-bold text-[var(--color-primary-dark)]">
+                {index + 1}
+              </span>
+              <p className="text-sm text-[var(--color-text-muted)]">{point}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-10 rounded-[24px] border border-[var(--color-border)] bg-white/95 p-4 shadow-[0_18px_40px_-34px_rgba(31,41,55,0.42)] backdrop-blur">
         <div className="mb-3 flex items-center justify-between gap-3">
           <div>
@@ -361,7 +389,7 @@ function PaymentPageContent() {
           Konfirmasi pembayaran · {formatCurrency(total)}
         </Link>
 
-        <p className="mt-2 text-center text-[11px] text-[var(--color-text-muted)]">E-voucher terbit otomatis setelah pembayaran berhasil.</p>
+        <p className="mt-2 text-center text-[11px] text-[var(--color-text-muted)]">Nominal tetap, status real-time, dan e-voucher aktif otomatis setelah pembayaran berhasil.</p>
       </section>
     </main>
   );

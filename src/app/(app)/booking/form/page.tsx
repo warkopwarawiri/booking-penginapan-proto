@@ -85,6 +85,11 @@ function BookingFormContent() {
   const serviceFee = 50000;
   const total = subtotal + taxes + serviceFee;
   const canContinue = name.trim() && email.trim() && whatsapp.trim();
+  const nextStepPreview = [
+    "Review akhir tanpa biaya tambahan tersembunyi",
+    "Pilih metode bayar yang paling nyaman",
+    "E-voucher langsung aktif setelah pembayaran",
+  ];
 
   const handleCheckInChange = (value: string) => {
     setCheckIn(value);
@@ -102,8 +107,8 @@ function BookingFormContent() {
     <main className="space-y-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       <PageHeader
         eyebrow="Form Pemesanan"
-        title="Lengkapi detail pemesananmu"
-        description="Tinjau tanggal, data tamu, dan kebutuhan khusus sebelum lanjut ke pembayaran."
+        title="Isi detail inti, lalu review dengan tenang"
+        description="Tahap ini hanya menyiapkan data stay. Belum ada pembayaran sampai kamu setujui review akhir."
         backHref={`/${property.slug}`}
         action={
           <span className="rounded-full bg-[var(--color-primary-soft)] px-3 py-1 text-[11px] font-semibold text-[var(--color-primary-dark)]">
@@ -374,6 +379,29 @@ function BookingFormContent() {
         </div>
       </section>
 
+      <section className="rounded-[24px] border border-[rgba(74,171,240,0.22)] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] p-4 shadow-[0_18px_40px_-34px_rgba(31,41,55,0.28)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-[var(--color-text)]">Setelah ini tinggal 2 langkah lagi</p>
+            <p className="mt-1 text-xs text-[var(--color-text-muted)]">Semua dibuat ringkas supaya keputusan booking tetap terasa ringan.</p>
+          </div>
+          <span className="rounded-full bg-[var(--color-primary-soft)] px-3 py-1 text-[11px] font-semibold text-[var(--color-primary-dark)]">
+            Belum bayar
+          </span>
+        </div>
+
+        <div className="mt-3 space-y-2">
+          {nextStepPreview.map((item, index) => (
+            <div key={item} className="flex items-start gap-3 rounded-[18px] bg-white px-3 py-3 shadow-[0_12px_28px_-30px_rgba(31,41,55,0.45)]">
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary-soft)] text-[11px] font-bold text-[var(--color-primary-dark)]">
+                {index + 1}
+              </span>
+              <p className="text-sm text-[var(--color-text-muted)]">{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-10 rounded-[24px] border border-[var(--color-border)] bg-white/95 p-4 shadow-[0_18px_40px_-34px_rgba(31,41,55,0.42)] backdrop-blur">
         <div className="mb-3 flex items-center justify-between gap-3">
           <div>
@@ -385,7 +413,7 @@ function BookingFormContent() {
 
         {canContinue ? (
           <Link href={`/booking/review?property=${property.slug}`} className={buttonVariants("primary", true)}>
-            Lanjutkan ke review pesanan
+            Review dulu, belum bayar
           </Link>
         ) : (
           <div className={cn(buttonVariants("primary", true), "pointer-events-none opacity-50")}>
@@ -393,7 +421,7 @@ function BookingFormContent() {
           </div>
         )}
 
-        <p className="mt-2 text-center text-[11px] text-[var(--color-text-muted)]">Belum ada pembayaran di langkah ini.</p>
+        <p className="mt-2 text-center text-[11px] text-[var(--color-text-muted)]">Kamu masih bisa cek ulang semuanya sebelum memilih metode pembayaran.</p>
       </section>
     </main>
   );

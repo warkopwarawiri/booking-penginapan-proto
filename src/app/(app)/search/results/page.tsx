@@ -39,6 +39,21 @@ const compareSpotlights = [
   },
 ];
 
+const matchReasons = [
+  {
+    title: "Kurasi terasa jelas",
+    body: "Alasan kenapa sebuah stay layak dipilih sudah kelihatan sebelum membuka detail panjang.",
+  },
+  {
+    title: "Info ibadah tidak tersembunyi",
+    body: "Masjid, halal nearby, dan fasilitas penting tampil natural saat relevan.",
+  },
+  {
+    title: "Keputusan jadi lebih cepat",
+    body: "Harga, vibe, dan nilai plus dibuat lebih mudah dibanding OTA yang terlalu padat.",
+  },
+];
+
 export default function SearchResultsPage() {
   if (!orderedProperties.length) {
     return (
@@ -147,12 +162,24 @@ export default function SearchResultsPage() {
         </span>
       </section>
 
+      <section className="grid gap-2 sm:grid-cols-3">
+        {matchReasons.map((item) => (
+          <div
+            key={item.title}
+            className="rounded-[18px] border border-[var(--color-border)] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FCFF_100%)] px-3 py-3 shadow-[0_14px_30px_-30px_rgba(31,41,55,0.32)]"
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">{item.title}</p>
+            <p className="mt-1 text-xs leading-5 text-[var(--color-text-muted)]">{item.body}</p>
+          </div>
+        ))}
+      </section>
+
       <section className="rounded-[22px] border border-[rgba(74,171,240,0.16)] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FCFF_100%)] p-3 shadow-[0_14px_32px_-30px_rgba(31,41,55,0.4)]">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-sm font-semibold text-[var(--color-text)]">Bandingkan cepat dalam 5 detik</p>
+            <p className="text-sm font-semibold text-[var(--color-text)]">Pilih gaya stay-mu dulu dalam 5 detik</p>
             <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-              Lihat pemenang untuk keunikan, kesiapan info ibadah, dan budget sebelum membuka detail.
+              Lihat mana yang paling unik, paling siap untuk kebutuhan ibadah, atau paling aman untuk budget.
             </p>
           </div>
           <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-primary-dark)]">

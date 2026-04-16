@@ -29,7 +29,7 @@ export default function LanguagePage() {
     <main className="space-y-4 pb-2">
       <PageHeader
         eyebrow="Pilih Bahasa"
-        title="Struktur multi-language siap digunakan"
+        title="Platform ini siap tumbuh ke audiens global"
         description="Bahasa Indonesia aktif, English siap dipilih, dan Arabic disiapkan untuk fase berikutnya."
         backHref="/profile"
       />

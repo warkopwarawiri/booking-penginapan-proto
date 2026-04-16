@@ -44,8 +44,8 @@ export default function NotificationsPage() {
     <main className="space-y-4 pb-2">
       <PageHeader
         eyebrow="Notifikasi"
-        title="Update booking dan promo"
-        description="Semua kabar penting tentang pesanan, promo, dan pengingat perjalanan tersusun di sini."
+        title="Update penting tersusun dengan tenang"
+        description="Booking, reminder, dan promo terbaru tampil ringkas supaya kamu cepat tahu mana yang perlu dibuka dulu."
         backHref="/home"
       />
 
@@ -102,7 +102,7 @@ export default function NotificationsPage() {
                     <div className="flex gap-2 text-[11px] font-semibold">
                       <span className="rounded-full bg-white px-2.5 py-1 text-[var(--color-primary-dark)]">Tandai dibaca</span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[var(--color-text)]">
-                        <Sparkles size={11} /> Lihat
+                        <Sparkles size={11} /> Buka detail
                       </span>
                     </div>
                   </div>

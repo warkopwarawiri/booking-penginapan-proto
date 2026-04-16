@@ -77,8 +77,8 @@ export default async function BookingsPage({
     <main className="space-y-4 pb-2">
       <PageHeader
         eyebrow="Pesanan Saya"
-        title="Riwayat dan status perjalananmu"
-        description="Pantau booking aktif, voucher, dan progress check-in dalam satu tampilan yang terasa lebih premium dan rapi."
+        title="Semua perjalananmu tersusun rapi"
+        description="Pantau booking aktif, voucher, dan progress check-in dalam satu tampilan yang cepat dipahami dan nyaman dicek kembali."
       />
 
       <section className="overflow-hidden rounded-[24px] border border-[rgba(74,171,240,0.22)] bg-[linear-gradient(135deg,#0F6FAE_0%,#4AABF0_58%,#EAF8FF_100%)] p-4 text-white shadow-[0_22px_50px_-30px_rgba(45,140,199,0.8)]">
