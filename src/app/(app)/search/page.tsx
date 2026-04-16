@@ -267,7 +267,7 @@ export default function SearchPage() {
         </div>
 
         <Link
-          href={`/properties/${featuredSearchPreview.slug}`}
+          href={`/${featuredSearchPreview.slug}`}
           className="mt-3 block overflow-hidden rounded-[20px] border border-[var(--color-border)] bg-[linear-gradient(180deg,#fffdf9_0%,#ffffff_100%)] shadow-[0_18px_40px_-34px_rgba(31,41,55,0.32)]"
         >
           <div className="relative h-32 overflow-hidden">

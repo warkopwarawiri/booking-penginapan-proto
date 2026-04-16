@@ -107,7 +107,7 @@ export default function SearchResultsPage() {
             </div>
           </div>
           <p className="mt-2 text-sm leading-6 text-[var(--color-text-muted)]">{featuredProperty.shortDescription}</p>
-          <Link href={`/properties/${featuredProperty.slug}`} className={`${buttonVariants("secondary")} mt-3`}>
+          <Link href={`/${featuredProperty.slug}`} className={`${buttonVariants("secondary")} mt-3`}>
             Lihat Highlight Stay
           </Link>
         </div>

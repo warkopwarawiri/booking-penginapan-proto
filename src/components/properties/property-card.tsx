@@ -14,7 +14,7 @@ interface PropertyCardProps {
 export function PropertyCard({ property, featured = false }: PropertyCardProps) {
   return (
     <Link
-      href={`/properties/${property.slug}`}
+      href={`/${property.slug}`}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-[22px] border border-[var(--color-border)] bg-white p-3 shadow-[0_18px_40px_-32px_rgba(31,41,55,0.4)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_28px_60px_-36px_rgba(31,41,55,0.55)]",
         featured && "border-[rgba(240,183,86,0.75)] bg-[linear-gradient(180deg,#fffdf7_0%,#ffffff_100%)]",

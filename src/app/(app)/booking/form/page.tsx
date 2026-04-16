@@ -104,7 +104,7 @@ function BookingFormContent() {
         eyebrow="Form Pemesanan"
         title="Lengkapi detail pemesananmu"
         description="Tinjau tanggal, data tamu, dan kebutuhan khusus sebelum lanjut ke pembayaran."
-        backHref={`/properties/${property.slug}`}
+        backHref={`/${property.slug}`}
         action={
           <span className="rounded-full bg-[var(--color-primary-soft)] px-3 py-1 text-[11px] font-semibold text-[var(--color-primary-dark)]">
             1/4

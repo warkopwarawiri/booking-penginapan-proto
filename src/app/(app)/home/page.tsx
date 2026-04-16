@@ -216,7 +216,7 @@ export default function HomePage() {
 
         {heroGem ? (
           <Link
-            href={`/properties/${heroGem.slug}`}
+            href={`/${heroGem.slug}`}
             className="block rounded-[24px] border border-[rgba(240,183,86,0.45)] bg-[linear-gradient(135deg,#FFF8EA_0%,#FFFFFF_100%)] p-4 shadow-[0_18px_40px_-34px_rgba(138,90,4,0.28)]"
           >
             <div className="flex items-start justify-between gap-3">
@@ -266,7 +266,7 @@ export default function HomePage() {
           {affordable.map((property) => (
             <Link
               key={property.id}
-              href={`/properties/${property.slug}`}
+              href={`/${property.slug}`}
               className="flex items-center justify-between rounded-[18px] border border-[var(--color-border)] px-3 py-3 transition hover:bg-[var(--color-surface-muted)]"
             >
               <div>
