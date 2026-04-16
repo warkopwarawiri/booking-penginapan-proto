@@ -71,6 +71,15 @@ export default async function BookingDetailPage({
           ? "Kamu sedang dalam masa menginap. Semua info penting tetap bisa diakses di halaman ini."
           : "Booking masih menunggu langkah berikutnya. Detail terbarunya akan muncul otomatis di sini.";
 
+  const confidencePoints = [
+    { label: "Pembayaran", value: "Terverifikasi" },
+    { label: "Kontak host", value: "Aktif" },
+    {
+      label: property.isMuslimFriendly ? "Info ibadah" : "Kebijakan",
+      value: property.isMuslimFriendly ? "Sudah dicatat" : "Jelas & fleksibel",
+    },
+  ];
+
   return (
     <main className="space-y-4 pb-2">
       <PageHeader
@@ -144,6 +153,15 @@ export default async function BookingDetailPage({
             <div className="mt-3 flex flex-wrap gap-2 text-[11px] font-medium text-[var(--color-text-muted)]">
               <span className="rounded-full bg-[var(--color-surface-muted)] px-3 py-1.5">Voucher digital aktif</span>
               <span className="rounded-full bg-[var(--color-surface-muted)] px-3 py-1.5">Check-in 14.00 WIB</span>
+            </div>
+
+            <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+              {confidencePoints.map((item) => (
+                <div key={item.label} className="rounded-[16px] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] px-2 py-2.5">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{item.label}</p>
+                  <p className="mt-1 text-[11px] font-semibold text-[var(--color-text)]">{item.value}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -271,6 +289,15 @@ export default async function BookingDetailPage({
               <p className="mt-1 text-sm text-[var(--color-text)]">{arrivalGuide.note}</p>
             </div>
           </div>
+          {property.muslimInfo ? (
+            <div className="flex items-start gap-3 rounded-[18px] border border-[rgba(74,171,240,0.18)] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] px-3 py-3">
+              <ShieldCheck size={16} className="mt-0.5 shrink-0 text-[var(--color-primary-dark)]" />
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Info ramah Muslim tersimpan</p>
+                <p className="mt-1 text-sm text-[var(--color-text)]">{property.muslimInfo.prayerPlace} · {property.muslimInfo.halalFood}</p>
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
 

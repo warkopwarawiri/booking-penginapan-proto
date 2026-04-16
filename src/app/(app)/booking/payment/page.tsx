@@ -192,6 +192,19 @@ function PaymentPageContent() {
         ))}
       </section>
 
+      <section className="grid grid-cols-3 gap-2 text-center text-[10px] font-semibold">
+        {[
+          ["Pembayaran aman", "Terenkripsi"],
+          ["Voucher otomatis", "Siap instan"],
+          ["Pembatalan jelas", "Gratis H-1"],
+        ].map(([title, note]) => (
+          <div key={title} className="rounded-[18px] border border-[var(--color-border)] bg-white px-2 py-2.5">
+            <p className="text-[var(--color-text)]">{title}</p>
+            <p className="mt-1 text-[var(--color-text-muted)]">{note}</p>
+          </div>
+        ))}
+      </section>
+
       <section className="overflow-hidden rounded-[24px] border border-[rgba(74,171,240,0.22)] bg-[linear-gradient(135deg,#EAF7FF_0%,#FFFFFF_100%)] p-2 shadow-[0_22px_50px_-36px_rgba(45,140,199,0.55)]">
         <div className="flex gap-3 rounded-[20px] bg-[linear-gradient(135deg,#0F6FAE_0%,#4AABF0_58%,#DDF4FF_100%)] p-3 text-white">
           <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-[18px] border border-white/20 shadow-[0_18px_30px_-24px_rgba(17,24,39,0.65)]">

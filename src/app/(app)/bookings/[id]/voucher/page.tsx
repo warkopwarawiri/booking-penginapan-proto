@@ -40,6 +40,15 @@ export default async function VoucherPage({
     notFound();
   }
 
+  const voucherAssurances = [
+    { label: "QR siap", value: "Bisa disimpan offline" },
+    { label: "Kontak host", value: "Siap dipakai saat tiba" },
+    {
+      label: property.isMuslimFriendly ? "Info ibadah" : "Alamat stay",
+      value: property.isMuslimFriendly ? property.muslimInfo?.prayerPlace ?? property.location : property.location,
+    },
+  ];
+
   return (
     <main className="space-y-4 pb-2">
       <PageHeader
@@ -116,6 +125,15 @@ export default async function VoucherPage({
               E-voucher ini sudah aktif, bisa ditunjukkan langsung di properti, dan aman disimpan sebagai cadangan selama perjalanan.
             </p>
           </div>
+        </div>
+
+        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+          {voucherAssurances.map((item) => (
+            <div key={item.label} className="rounded-[16px] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] px-2 py-2.5">
+              <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{item.label}</p>
+              <p className="mt-1 text-[11px] font-semibold leading-4 text-[var(--color-text)]">{item.value}</p>
+            </div>
+          ))}
         </div>
 
         <div className="mt-4 space-y-2">

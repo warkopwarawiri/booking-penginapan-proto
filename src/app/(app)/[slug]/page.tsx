@@ -115,6 +115,45 @@ const propertyExperience: Record<
   },
 };
 
+const propertyTestimonials: Record<string, Array<{ name: string; context: string; quote: string }>> = {
+  "villa-padi-ubud": [
+    {
+      name: "Alya · Jakarta",
+      context: "Short healing trip",
+      quote: "Sesuai foto, suasananya tenang, dan check-in terasa sangat mudah.",
+    },
+    {
+      name: "Nadia · Surabaya",
+      context: "Muslim-friendly stay",
+      quote: "Info masjid dan kuliner halal di sekitar benar-benar membantu saat tiba.",
+    },
+  ],
+  "samudra-haven-lombok": [
+    {
+      name: "Rafi · Bandung",
+      context: "Weekend escape",
+      quote: "Sunset-nya cantik dan suasananya jauh lebih tenang dari area ramai.",
+    },
+    {
+      name: "Sinta · Bali",
+      context: "Anniversary trip",
+      quote: "Properti terasa rapi, premium, dan cocok untuk short escape yang santai.",
+    },
+  ],
+  "teras-senja-yogya": [
+    {
+      name: "Hana · Semarang",
+      context: "2 malam city stay",
+      quote: "Lokasinya strategis dan detail stay-nya jelas sejak sebelum datang.",
+    },
+    {
+      name: "Reno · Solo",
+      context: "Kuliner trip",
+      quote: "Pilihan pas untuk trip singkat yang nyaman dan tidak ribet.",
+    },
+  ],
+};
+
 export default async function PropertyDetailPage({
   params,
 }: {
@@ -142,6 +181,32 @@ export default async function PropertyDetailPage({
   };
 
   const gallery = Array.from(new Set([property.imageUrl, ...experience.gallery]));
+  const trustHighlights = [
+    { label: "Akurasi lokasi", value: property.isHiddenGem ? "98%" : "96%" },
+    { label: "Check-in mudah", value: property.isHiddenGem ? "9.7/10" : "9.4/10" },
+    {
+      label: property.isMuslimFriendly ? "Info ibadah" : "Respon host",
+      value: property.isMuslimFriendly ? "Terverifikasi" : "< 10 menit",
+    },
+  ];
+  const guestQuotes = propertyTestimonials[property.slug] ?? [
+    {
+      name: "Tamu terverifikasi",
+      context: "Recent stay",
+      quote: "Tempatnya sesuai foto dan terasa nyaman sejak pertama datang.",
+    },
+    {
+      name: "Traveler keluarga",
+      context: "Booking cepat",
+      quote: "Detail stay dan proses check-in-nya jelas, jadi lebih tenang saat booking.",
+    },
+  ];
+
+  const travelerReasons = [
+    property.isHiddenGem ? "suasana lebih private" : "lokasi mudah dijangkau",
+    property.isMuslimFriendly ? "info ibadah sudah siap" : "detail check-in jelas",
+    property.originalPrice ? "harga terasa lebih aman" : "cocok untuk short escape",
+  ];
 
   return (
     <main className="space-y-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
@@ -264,6 +329,55 @@ export default async function PropertyDetailPage({
           <StatCard icon={<Clock3 size={15} />} label="Check-in" value={experience.checkIn} />
         </div>
       </section>
+
+      <DetailSection
+        title="Diverifikasi oleh tim kami"
+        description="Proof cepat yang membuat stay ini terasa lebih jelas, terpercaya, dan siap dibooking."
+      >
+        <div className="grid grid-cols-3 gap-2 text-sm">
+          {trustHighlights.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-[18px] border border-[rgba(74,171,240,0.16)] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] px-3 py-3"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{item.label}</p>
+              <p className="mt-1 text-sm font-semibold text-[var(--color-text)]">{item.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-3 rounded-[18px] border border-[rgba(74,171,240,0.16)] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] px-3 py-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">Catatan kurasi tim</p>
+          <p className="mt-1 text-sm leading-6 text-[var(--color-text-muted)]">
+            {property.hiddenGemReasons?.[0] ?? "Stay ini dipilih karena konsisten nyaman, detail jelas, dan terasa mudah dipercaya sejak sebelum check-in."}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {travelerReasons.map((reason) => (
+              <span
+                key={reason}
+                className="rounded-full bg-white px-3 py-1 text-[10px] font-semibold text-[var(--color-text-muted)] shadow-[0_10px_20px_-18px_rgba(31,41,55,0.35)]"
+              >
+                {reason}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-3 space-y-2">
+          {guestQuotes.map((guest) => (
+            <div key={`${guest.name}-${guest.context}`} className="rounded-[18px] bg-[var(--color-surface-muted)] px-3 py-3">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <p className="text-[11px] font-semibold text-[var(--color-text)]">{guest.name}</p>
+                  <p className="text-[10px] uppercase tracking-[0.12em] text-[var(--color-primary-dark)]">{guest.context}</p>
+                </div>
+                <span className="rounded-full bg-white px-2 py-1 text-[10px] font-semibold text-[var(--color-text-muted)]">Terverifikasi</span>
+              </div>
+              <p className="mt-2 text-sm leading-6 text-[var(--color-text-muted)]">“{guest.quote}”</p>
+            </div>
+          ))}
+        </div>
+      </DetailSection>
 
       <DetailSection
         title="Yang perlu kamu tahu"

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, MapPin, Sparkles, Star } from "lucide-react";
+import { Heart, MapPin, ShieldCheck, Sparkles, Star } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Property } from "@/lib/types";
@@ -12,6 +12,31 @@ interface PropertyCardProps {
 }
 
 export function PropertyCard({ property, featured = false }: PropertyCardProps) {
+  const compareTags = [
+    property.isHiddenGem ? "Kurasi tim" : property.type,
+    property.isMuslimFriendly ? "Info halal nearby" : `${property.maxGuests} tamu`,
+    property.originalPrice ? "Harga promo" : null,
+  ].filter(Boolean) as string[];
+
+  const bestFor =
+    property.type === "Villa"
+      ? "Keluarga & couple"
+      : property.type === "Resort"
+        ? "Sunset escape"
+        : property.type === "Homestay"
+          ? "City trip singkat"
+          : property.type === "Cottage"
+            ? "Short escape sejuk"
+            : "Stay praktis";
+
+  const proofNote = property.isMuslimFriendly
+    ? "Masjid & halal nearby"
+    : property.isHiddenGem
+      ? "Kurasi manual tim"
+      : property.originalPrice
+        ? "Harga promo aktif"
+        : "Check-in simpel";
+
   return (
     <Link
       href={`/${property.slug}`}
@@ -43,11 +68,11 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
             </div>
             <span
               className={cn(
-                "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-semibold backdrop-blur",
+                "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-semibold backdrop-blur transition-all duration-200 group-hover:-translate-y-0.5 group-hover:scale-105",
                 featured ? "bg-white/55 text-[#6C4910]" : "bg-white/20 text-white",
               )}
             >
-              <Heart size={11} />
+              <Heart size={11} className="group-hover:fill-current" />
               Simpan
             </span>
           </div>
@@ -79,6 +104,31 @@ export function PropertyCard({ property, featured = false }: PropertyCardProps) 
         </div>
 
         <p className="min-h-[48px] text-xs leading-5 text-[var(--color-text-muted)]">{property.shortDescription}</p>
+
+        <div className="flex flex-wrap gap-1.5">
+          {compareTags.slice(0, 3).map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full bg-[var(--color-surface-muted)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-muted)]"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 text-[11px]">
+          <div className="rounded-[14px] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] px-2.5 py-2">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Cocok untuk</p>
+            <p className="mt-1 text-[11px] font-semibold leading-4 text-[var(--color-text)]">{bestFor}</p>
+          </div>
+          <div className="rounded-[14px] bg-[linear-gradient(180deg,#F8FCFF_0%,#FFFFFF_100%)] px-2.5 py-2">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Nilai plus</p>
+            <p className="mt-1 flex items-center gap-1 text-[11px] font-semibold leading-4 text-[var(--color-text)]">
+              <ShieldCheck size={11} className="shrink-0 text-[var(--color-primary-dark)]" />
+              {proofNote}
+            </p>
+          </div>
+        </div>
 
         <div className="mt-auto flex items-end justify-between gap-3">
           <span className="flex items-center gap-1 text-xs font-medium text-[var(--color-text)]">

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpDown, Sparkles } from "lucide-react";
+import { ArrowUpDown, MoonStar, ShieldCheck, Sparkles, Wallet } from "lucide-react";
 
 import { PropertyCard } from "@/components/properties/property-card";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,31 @@ const featuredProperty = properties.find((property) => property.isHiddenGem) ?? 
 const orderedProperties = [...properties].sort(
   (left, right) => Number(Boolean(right.isHiddenGem)) - Number(Boolean(left.isHiddenGem)),
 );
+const muslimFriendlyProperty = orderedProperties.find((property) => property.isMuslimFriendly) ?? orderedProperties[0];
+const budgetProperty = [...orderedProperties].sort((left, right) => left.price - right.price)[0];
+const compareSpotlights = [
+  {
+    title: "Paling unik",
+    property: featuredProperty,
+    note: featuredProperty.hiddenGemReasons?.[0] ?? "Kurasi manual oleh tim kami",
+    icon: Sparkles,
+    accentClass: "bg-[var(--color-gold-soft)] text-[#8A5A04]",
+  },
+  {
+    title: "Info ibadah paling siap",
+    property: muslimFriendlyProperty,
+    note: muslimFriendlyProperty.muslimInfo?.prayerPlace ?? "Masjid dan kuliner halal nearby",
+    icon: MoonStar,
+    accentClass: "bg-[var(--color-primary-soft)] text-[var(--color-primary-dark)]",
+  },
+  {
+    title: "Budget paling aman",
+    property: budgetProperty,
+    note: `Mulai ${formatCurrency(budgetProperty.price)} per malam`,
+    icon: Wallet,
+    accentClass: "bg-[var(--color-surface-muted)] text-[var(--color-text)]",
+  },
+];
 
 export default function SearchResultsPage() {
   if (!orderedProperties.length) {
@@ -48,7 +73,7 @@ export default function SearchResultsPage() {
         <div className="flex items-center justify-between gap-3">
           <div>
             <p className="text-xs text-[var(--color-text-muted)]">Ringkasan pencarian</p>
-            <p className="text-sm font-semibold text-[var(--color-text)]">Villa private · pembatalan fleksibel</p>
+            <p className="text-sm font-semibold text-[var(--color-text)]">Villa private · info ibadah terverifikasi</p>
           </div>
           <Link href="/search" className="rounded-full bg-[var(--color-primary-soft)] px-3 py-1.5 text-[11px] font-semibold text-[var(--color-primary-dark)]">
             Ubah
@@ -57,9 +82,8 @@ export default function SearchResultsPage() {
         <div className="flex flex-wrap gap-2 text-xs">
           {[
             "Ramah Muslim ×",
-            "Harga Termurah ×",
             "Villa ×",
-            "2 Tamu ×",
+            "Cancel fleksibel ×",
           ].map((chip, index) => (
             <span
               key={chip}
@@ -121,6 +145,46 @@ export default function SearchResultsPage() {
         <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white px-3 py-2 text-[11px] font-semibold text-[var(--color-text)]">
           <ArrowUpDown size={13} /> Paling relevan
         </span>
+      </section>
+
+      <section className="rounded-[22px] border border-[rgba(74,171,240,0.16)] bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FCFF_100%)] p-3 shadow-[0_14px_32px_-30px_rgba(31,41,55,0.4)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-[var(--color-text)]">Bandingkan cepat dalam 5 detik</p>
+            <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+              Lihat pemenang untuk keunikan, kesiapan info ibadah, dan budget sebelum membuka detail.
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-primary-dark)]">
+            <ShieldCheck size={12} /> Kurasi aktif
+          </span>
+        </div>
+
+        <div className="mt-3 grid gap-2">
+          {compareSpotlights.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.title}
+                href={`/${item.property.slug}`}
+                className="flex items-start justify-between gap-3 rounded-[18px] border border-[var(--color-border)] bg-white px-3 py-3 transition hover:bg-[var(--color-surface-muted)]"
+              >
+                <div className="flex items-start gap-3">
+                  <span className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${item.accentClass}`}>
+                    <Icon size={15} />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{item.title}</p>
+                    <p className="mt-1 text-sm font-semibold text-[var(--color-text)]">{item.property.name}</p>
+                    <p className="mt-1 text-xs leading-5 text-[var(--color-text-muted)]">{item.note}</p>
+                  </div>
+                </div>
+                <span className="text-[11px] font-semibold text-[var(--color-primary-dark)]">Lihat</span>
+              </Link>
+            );
+          })}
+        </div>
       </section>
 
       <section className="grid gap-3">

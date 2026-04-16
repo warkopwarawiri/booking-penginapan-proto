@@ -17,20 +17,20 @@ const heroGem = hiddenGems[0];
 const muslimFriendlyCount = properties.filter((property) => property.isMuslimFriendly).length;
 const trustHighlights = [
   {
-    title: `${hiddenGems.length} Hidden Gem`,
-    body: "Kurasi editor untuk pilihan penginapan paling spesial",
+    title: `${hiddenGems.length} Hidden Gem diverifikasi`,
+    body: "Dipilih manual oleh tim untuk pengalaman yang terasa lebih spesial",
     icon: Gem,
     accentClass: "bg-[var(--color-gold-soft)] text-[#8A5A04]",
   },
   {
-    title: `${muslimFriendlyCount} ramah Muslim`,
-    body: "Info ibadah dan halal tampil natural di tiap pilihan",
+    title: `${muslimFriendlyCount} stay dengan info ibadah`,
+    body: "Masjid, kuliner halal, dan arah kiblat tampil langsung saat dibutuhkan",
     icon: MoonStar,
     accentClass: "bg-[var(--color-primary-soft)] text-[var(--color-primary-dark)]",
   },
   {
-    title: "Flow makin ringkas",
-    body: "Cari, bayar, lalu buka voucher tanpa terasa berat",
+    title: "Voucher terbit instan",
+    body: "Begitu bayar, detail check-in langsung siap tanpa langkah tambahan",
     icon: ShieldCheck,
     accentClass: "bg-[var(--color-surface-muted)] text-[var(--color-text)]",
   },
@@ -63,10 +63,10 @@ export default function HomePage() {
             </p>
             <p className="mt-1 text-sm font-semibold text-[var(--color-text)]">{currentUser.name}</p>
             <h1 className="mt-2 text-[1.5rem] font-bold leading-[1.2] text-[var(--color-text)]">
-              Temukan penginapan yang lebih personal untuk liburan berikutnya.
+              Penginapan terkurasi, nyaman, dan lebih mudah dipercaya.
             </h1>
             <p className="mt-1.5 text-xs leading-5 text-[var(--color-text-muted)]">
-              Hidden Gem, informasi ramah Muslim, dan rekomendasi hangat untuk perjalanan yang lebih nyaman.
+              Temukan Hidden Gem dan info ramah Muslim yang langsung membantu kamu memilih dengan lebih yakin.
             </p>
           </div>
         </div>
@@ -92,13 +92,21 @@ export default function HomePage() {
           ) : null}
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,111,174,0.92)_0%,rgba(74,171,240,0.84)_58%,rgba(221,244,255,0.55)_100%)]" />
           <div className="absolute -right-8 -top-10 h-28 w-28 rounded-full bg-white/10 blur-2xl" />
-          <Badge tone="gold">Kurasi minggu ini</Badge>
+          <Badge tone="gold">Kurasi dengan bukti</Badge>
           <h2 className="mt-3 text-[1.35rem] font-bold leading-8">
-            Penginapan cantik, tenang, dan nyaman untuk liburan berikutnya.
+            Hidden Gem terkurasi dengan info ramah Muslim yang siap dipakai.
           </h2>
           <p className="mt-2 max-w-[290px] text-sm leading-6 text-white/85">
-            Jelajahi villa sawah, resort tepi pantai, dan penginapan hangat yang bikin liburan terasa lebih berkesan.
+            Bukan hanya listing cantik — setiap stay pilihan hadir dengan alasan kurasi, insight sekitar, dan booking flow yang terasa ringan.
           </p>
+          {heroGem?.muslimInfo ? (
+            <div className="mt-3 rounded-[18px] border border-white/20 bg-black/15 px-3 py-2.5 text-[11px] font-medium text-white/92 backdrop-blur-sm">
+              <p className="text-white/70">Kenapa ini terasa beda</p>
+              <p className="mt-1 leading-5">
+                {heroGem.hiddenGemReasons?.[0] ?? "Dipilih manual oleh tim kurasi"} • {heroGem.muslimInfo.prayerPlace} • {heroGem.muslimInfo.halalFood}
+              </p>
+            </div>
+          ) : null}
           <div className="mt-4 flex flex-wrap gap-2">
             <Link href="/search/results" className={buttonVariants("secondary")}>
               Lihat Hidden Gem
@@ -160,7 +168,7 @@ export default function HomePage() {
       </section>
 
       <section className="hide-scrollbar flex gap-2 overflow-x-auto pb-1">
-        {quickFilters.map((filter, index) => (
+        {quickFilters.slice(0, 5).map((filter, index) => (
           <span
             key={filter}
             className={cn(

@@ -6,12 +6,10 @@ export const appConfig = {
 
 export const quickFilters = [
   "Semua",
-  "Villa",
-  "Hotel",
-  "Homestay",
+  "Hidden Gem",
   "Ramah Muslim",
+  "Villa",
   "Pantai",
-  "Pegunungan",
 ];
 
 export const destinations = [
